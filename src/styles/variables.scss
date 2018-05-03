@@ -1,6 +1,15 @@
-//sidebar
+// 字体
+$main-font-weight:500; // 字体权重
+// 边框
+$border-color-1: #ccd5db; // 边框颜色
+// 背景
 $menuBg:#304156;
 $subMenuBg:#1f2d3d;
 $menuHover:#001528;
-// 字体
-$main-font-weight:500; // 字体权重
+$main-bg: #fafafa;
+// 顶部高度
+$tool-header-height: 56px;
+// 模板列表宽度
+$template-width: 60px;
+// 元素设置区域宽度
+$setting-width:260px;

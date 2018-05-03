@@ -20,6 +20,11 @@
       </template>
     </el-row>
     <!--endregion-->
+    <!--region 创建新场景-->
+    <div class="add-new-scene">
+      <el-button type="primary" icon="el-icon-plus" plain round @click.native="creatNewScene">添加新场景</el-button>
+    </div>
+    <!--endregion-->
   </div>
 </template>
 <script>
@@ -83,8 +88,13 @@ export default {
   },
   methods: {
     handleSetLineChartData (panel) {
-      console.log(' panel:', panel)
       this.lineChartData = lineChartData[panel]
+    },
+    /**
+     * 创建新场景
+     */
+    creatNewScene () {
+      this.$router.push({ path: '/editor' })
     }
   }
 }
@@ -99,104 +109,107 @@ export default {
   overflow-y: auto;
   .panel-group {
     padding: 40px 0;
-    .card-panel-col{
+    .card-panel-col {
       margin-top: 10px;
-    .card-panel {
-      height: 108px;
-      cursor: pointer;
-      font-size: $font-size-s;
-      position: relative;
-      overflow: hidden;
-      color: #666;
-      background: #fff;
-      -webkit-box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.05);
-      box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.05);
-      border-color: rgba(0, 0, 0, 0.05);
-      display: flex;
-      padding: 0 20px;
+      .card-panel {
+        height: 108px;
+        cursor: pointer;
+        font-size: $font-size-s;
+        position: relative;
+        overflow: hidden;
+        color: #666;
+        background: #fff;
+        -webkit-box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.05);
+        box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.05);
+        border-color: rgba(0, 0, 0, 0.05);
+        display: flex;
+        padding: 0 20px;
 
-      &:hover {
+        &:hover {
+          .card-panel-icon-wrapper {
+            .card-panel-icon {
+              border-radius: 4px;
+              transition: all 0.38s ease-out;
+              &.panel-1 {
+                background-color: #40c9c6;
+                .axon-icon {
+                  color: #ffffff;
+                }
+              }
+              &.panel-2 {
+                background-color: #36a3f7;
+                .axon-icon {
+                  color: #ffffff;
+                }
+              }
+              &.panel-3 {
+                background-color: #f4516c;
+                .axon-icon {
+                  color: #ffffff;
+                }
+              }
+              &.panel-4 {
+                background-color: #34bfa3;
+                .axon-icon {
+                  color: #ffffff;
+                }
+              }
+            }
+          }
+        }
         .card-panel-icon-wrapper {
+          flex: 0 0 50%;
           .card-panel-icon {
-            border-radius: 4px;
-            transition: all 0.38s ease-out;
+            width: 60px;
+            height: 60px;
+            margin-top: 29px;
+            text-align: center;
+            line-height: 60px;
             &.panel-1 {
-              background-color: #40c9c6;
               .axon-icon {
-                color: #ffffff;
+                color: #40c9c6;
               }
             }
             &.panel-2 {
-              background-color: #36a3f7;
               .axon-icon {
-                color: #ffffff;
+                color: #36a3f7;
               }
             }
             &.panel-3 {
-              background-color: #f4516c;
               .axon-icon {
-                color: #ffffff;
+                color: #f4516c;
               }
             }
             &.panel-4 {
-              background-color: #34bfa3;
               .axon-icon {
-                color: #ffffff;
+                color: #34bfa3;
               }
             }
+            .axon-icon {
+              font-size: $font-size-large;
+            }
           }
         }
-      }
-      .card-panel-icon-wrapper {
-        flex: 0 0 50%;
-        .card-panel-icon {
-          width: 60px;
-          height: 60px;
-          margin-top: 29px;
-          text-align: center;
-          line-height: 60px;
-          &.panel-1 {
-            .axon-icon {
-              color: #40c9c6;
-            }
+        .card-panel-description {
+          flex: 0 0 50%;
+          text-align: right;
+          margin: 26px 0;
+          .card-panel-text {
+            font-size: $font-size-xxl;
+            font-weight: 600;
+            line-height: 32px;
+            color: rgba(0, 0, 0, 0.45);
           }
-          &.panel-2 {
-            .axon-icon {
-              color: #36a3f7;
-            }
+          .card-panel-num {
+            font-weight: 600;
+            font-size: $font-size-xxxl;
           }
-          &.panel-3 {
-            .axon-icon {
-              color: #f4516c;
-            }
-          }
-          &.panel-4 {
-            .axon-icon {
-              color: #34bfa3;
-            }
-          }
-          .axon-icon {
-            font-size: $font-size-large;
-          }
-        }
-      }
-      .card-panel-description {
-        flex: 0 0 50%;
-        text-align: right;
-        margin: 26px 0;
-        .card-panel-text {
-          font-size: $font-size-xxl;
-          font-weight: 600;
-          line-height: 32px;
-          color: rgba(0, 0, 0, 0.45);
-        }
-        .card-panel-num {
-          font-weight: 600;
-          font-size: $font-size-xxxl;
         }
       }
     }
-    }
+  }
+  .add-new-scene {
+    text-align: center;
   }
 }
 </style>

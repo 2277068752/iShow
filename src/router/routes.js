@@ -57,5 +57,6 @@ export default [
         component: _import('errors/401')
       }
     ]
-  }
+  },
+  { path: '/editor', component: _import('editor/Index') }
 ]
