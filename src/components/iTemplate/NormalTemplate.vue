@@ -29,15 +29,15 @@ export default {
   computed: {},
   methods: {
     initTextTool () {
-      let _style = this.toolObj.style
-      let _tempStyleObj = {
-        fontFamily: _style['font-family'],
-        fontSize: `${_style['font-size']}px`,
-        color: _style['color'],
-        height: _style['height'],
-        width: _style['width'],
-        fontWeight: _style['']
-      }
+      // let _style = this.toolObj.style
+      /* let _tempStyleObj = {
+         fontFamily: _style['font-family'],
+         fontSize: `${_style['font-size']}px`,
+         color: _style['color'],
+         height: _style['height'],
+         width: _style['width'],
+         fontWeight: _style['']
+       } */
     }
   }
 }

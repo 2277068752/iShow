@@ -7,9 +7,9 @@
     "value": "请输入内容",
     "style": {
       "font-family": "黑体",
-      "font-size": 14,
+      "font-size": "14px",
       "color": "#333",
-      "isWeight": 0,
+      "font-weight": "500",
       "height": 30,
       "width": 300,
       "font-style": "normal"

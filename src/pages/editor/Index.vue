@@ -22,7 +22,7 @@ import TheSettingElements from './components/TheSettingElements'
 import TheTemplateList from './components/TheTemplateList'
 import TheTools from './components/TheTools'
 import NormalTemplate from '../../components/iTemplate/NormalTemplate'
-import Bus from '../../base/bus'
+// import Bus from '../../base/bus'
 import { mapState } from 'vuex'
 
 export default {
