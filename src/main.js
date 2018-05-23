@@ -13,6 +13,7 @@ import 'nprogress/nprogress.css'// progress bar style
 import UtilsPlugin from './assets/utils'
 import HttpPlugin from './http/index'
 import VueParticles from 'vue-particles' // 粒子酷炫效果
+import formatStyle from './filters/formatStyle.js'
 // import { Tag } from '../src/model/index'
 import './mock' // mock
 Vue.config.productionTip = false
@@ -21,6 +22,7 @@ Vue.use(ElementUI)
 Vue.use(UtilsPlugin)
 Vue.use(HttpPlugin)
 Vue.use(VueParticles)
+Vue.filter('formatStyle', formatStyle)
 // const dispatch = store.dispatch
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar

@@ -5,56 +5,41 @@
     <div class="index-center">
       <the-template-list></the-template-list>
       <div class="editor-box">
-        <div class="editor-wrapper">
-          <template v-for="item in toolList">
-            <normal-template :toolJson="item" :key="item.key"></normal-template>
-          </template>
-        </div>
+        <the-editor-container></the-editor-container>
       </div>
-      <the-setting-elements></the-setting-elements>
+      <the-page-list></the-page-list>
     </div>
     <!--endregion-->
   </div>
 </template>
 
 <script>
-import TheSettingElements from './components/TheSettingElements'
+import ThePageList from './components/ThePageList'
 import TheTemplateList from './components/TheTemplateList'
 import TheTools from './components/TheTools'
-import NormalTemplate from '../../components/iTemplate/NormalTemplate'
-// import Bus from '../../base/bus'
-import { mapState } from 'vuex'
+import TheEditorContainer from './components/TheEditorContainer'
 
 export default {
-  components: { TheSettingElements, TheTemplateList, TheTools, NormalTemplate },
+  components: { ThePageList, TheTemplateList, TheTools, TheEditorContainer },
   data () {
     return {
       toolJson: {}
     }
   },
   created () {
+    // 初始化
+    this.$store.dispatch('initPageEditor')
   },
   mounted () {
-    // this.initTool()
   },
-  computed: {
-    ...mapState({
-      toolList: ({ global }) => global.toolCurrent
-    })
-  },
-  methods: {
-    // 初始化 tool
-    /* initTool () {
-      Bus.$on('addTool', function (val) {
-        this.toolJson = val
-      })
-    } */
-  }
+  computed: {},
+  methods: {}
 }
 </script>
 
 <style lang="scss">
 @import "../../styles/variables";
+@import "../../styles/mixin";
 
 .editor-index {
   background-color: #fff;
@@ -68,21 +53,12 @@ export default {
     display: flex;
     flex-direction: row;
     .editor-box {
+      @include scrollBar;
+      box-sizing: border-box;
       width: 100%;
+      overflow-y: auto;
+      padding: 40px 0;
       background-color: #eee;
-      display: flex;
-      align-items: center;
-      .editor-wrapper {
-        margin: 0 auto;
-        border-top: 30px solid #ddd;
-        border-bottom: 30px solid #ddd;
-        border-right: 4px solid #ddd;
-        border-left: 4px solid #ddd;
-        border-radius: 24px;
-        width: 375px;
-        height: 667px;
-        background-color: #fff;
-      }
     }
   }
 }

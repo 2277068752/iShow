@@ -1,12 +1,12 @@
 <template>
   <!--region 顶部各种组件列表-->
   <div class="the-header-tools">
-    <div class="logo">
+    <div class="logo" v-show="false">
       <img src="../../../assets/logo.png"/>
     </div>
     <ul class="tool-wrapper">
       <template v-for="item in toolList">
-        <li class="item" :key="item.key" @click="toolHandle(item)">
+        <li class="item" :key="item.key" @click="handleAddComponent('Text')">
           <span class="axon-icon" v-html="item.icon">
           </span>
           <span>{{ item.label }}</span>
@@ -15,7 +15,7 @@
     </ul>
     <!--region 操作按钮-->
     <el-row class="action-group">
-      <el-button size="small" type="success">预览</el-button>
+      <el-button size="small" type="primary">预览</el-button>
       <el-button size="small" type="primary">保存</el-button>
       <el-button size="small" type="primary">发布</el-button>
       <el-button size="small" type="danger">退出</el-button>
@@ -48,14 +48,10 @@ export default {
   },
   methods: {
     /**
-     * 元素插件点击
+     * 组件插入
      */
-    toolHandle (item) {
-      // 文本组件
-      if (item.key === 1) {
-        // Bus.$emit('addTool', item)
-      }
-      this.$store.dispatch('setCurrentTool', item)
+    handleAddComponent (name) {
+      this.$store.dispatch('addNewComp', name)
     }
   }
 }

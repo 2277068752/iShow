@@ -9,13 +9,18 @@
 import { mapState } from 'vuex'
 
 export default {
-  components: { },
+  components: {},
   data () {
     return {}
   },
+  mounted () {
+    // 禁用整个页面的右击事件
+    document.oncontextmenu = () => {
+      return false
+    }
+  },
   computed: {
-    ...mapState({
-    })
+    ...mapState({})
   },
   methods: {}
 }

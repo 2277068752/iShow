@@ -9,6 +9,8 @@ import auth from './modules/auth'
 import menus from './modules/menus'
 import global from './modules/global'
 import tags from './modules/tags'
+import components from './modules/components'
+import pages from './modules/pages'
 
 Vue.use(Vuex)
 export default new Vuex.Store({
@@ -17,7 +19,9 @@ export default new Vuex.Store({
     global,
     menus,
     auth,
-    tags
+    tags,
+    components,
+    pages
   },
   // 插件
   plugins: [createPersistedState({
