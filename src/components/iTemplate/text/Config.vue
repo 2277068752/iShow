@@ -1,9 +1,10 @@
+<!--region 组件设置-->
 <template>
-  <div class="MyContain">
+  <div class="text-comp-config-page">
 
   </div>
 </template>
-
+<!--endregion-->
 <script>
 export default {
   components: {},
@@ -20,7 +21,7 @@ export default {
 </script>
 
 <style lang="scss">
-.MyContain {
+.text-comp-config-page {
   background-color: #fff;
 }
 </style>

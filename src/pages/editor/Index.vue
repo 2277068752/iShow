@@ -2,12 +2,13 @@
   <div class="editor-index">
     <the-tools></the-tools>
     <!--region 中间区域分为三个区间-->
-    <div class="index-center">
+    <div class="index-center" ref="centerBox">
       <the-template-list></the-template-list>
       <div class="editor-box">
         <the-editor-container></the-editor-container>
       </div>
       <the-page-list></the-page-list>
+      <the-comp-props-config></the-comp-props-config>
     </div>
     <!--endregion-->
   </div>
@@ -18,12 +19,23 @@ import ThePageList from './components/ThePageList'
 import TheTemplateList from './components/TheTemplateList'
 import TheTools from './components/TheTools'
 import TheEditorContainer from './components/TheEditorContainer'
+import TheCompPropsConfig from './components/TheCompPropsConfig'
 
 export default {
-  components: { ThePageList, TheTemplateList, TheTools, TheEditorContainer },
+  components: {
+    ThePageList,
+    TheTemplateList,
+    TheTools,
+    TheEditorContainer,
+    TheCompPropsConfig
+  },
   data () {
     return {
-      toolJson: {}
+      toolJson: {},
+      panelWidthAndHeight: {
+        width: 200,
+        height: 400
+      }
     }
   },
   created () {
@@ -52,6 +64,7 @@ export default {
     flex: 0 0 calc(#{"100% - "+ $tool-header-height +""});
     display: flex;
     flex-direction: row;
+    position: relative;
     .editor-box {
       @include scrollBar;
       box-sizing: border-box;

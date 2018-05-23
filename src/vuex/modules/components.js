@@ -4,7 +4,12 @@ import { getNewComp } from '../function.js'
 const BASE_COMP_SUFFIX = 'Data'
 const state = {
   list: [],
-  curCompId: null
+  curCompId: null,
+  propsPanel: {
+    states: false,
+    name: '',
+    id: ''
+  } // 组件属性面板
 }
 const getters = {
   // 根据页面ID取页面中所有的组件
@@ -18,6 +23,9 @@ const getters = {
   // 根据组件ID取当前组件的配置信息
   getCompConfigByCompId: (state) => (compid) => {
     return state.list.find(_x => _x.id === compid)
+  },
+  propPanel: (state) => {
+    return state.propsPanel
   }
 }
 const mutations = {
@@ -37,6 +45,8 @@ const mutations = {
         }
         if (typeof value[key] === 'object') {
           Object.assign(compProp[key], value[key])
+        } else {
+          compProp[key] = value[key]
         }
       }
     }
@@ -44,6 +54,13 @@ const mutations = {
   // 新增组件
   [types.ADD_COMPONENT] (state, val) {
     state.list.push(val)
+  },
+  [types.OPEN_PROPS_PANEL] (state, { id, name }) {
+    state.propsPanel = {
+      status: true,
+      name: name,
+      id: id
+    }
   }
 }
 const actions = {
@@ -57,8 +74,19 @@ const actions = {
     }
   },
   // 激活当前组件
-  toggleComp ({commit}, val) {
+  toggleComp ({ commit }, val) {
     commit(types.TOGGLE_COMP, val)
+  },
+  // 更新组件
+  editComp ({ commit }, { type, value, compId }) {
+    commit(types.EDIT_COMP, { type, value, compId })
+  },
+  // 打开组件属性设置面板
+  openPropsPanel ({ commit }, { id, name }) {
+    commit(types.OPEN_PROPS_PANEL, {
+      id: id,
+      name: name
+    })
   }
 }
 export default {

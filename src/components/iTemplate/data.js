@@ -1,7 +1,7 @@
 /**
  * 所有组件的data配置项
  */
-import TextData from './Text/data'
+import TextData from './text/data'
 
 export default {
   TextData

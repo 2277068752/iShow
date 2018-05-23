@@ -1,9 +1,10 @@
+<!--region 文本框组件-->
 <template>
   <div class="c-text">
     <a :style="linkStyle | formatStyle" href="#" v-html="compObj.props.text"></a>
   </div>
 </template>
-
+<!--endregion-->
 <script>
 export default {
   name: 'BaseText',

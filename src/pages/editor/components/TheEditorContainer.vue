@@ -19,8 +19,8 @@
                   :key="compKey"
                   :w="comp.css.w"
                   :h="comp.css.h"
-                  :x="comp.css.x"
-                  :y="comp.css.y"
+                  :x="comp.css.l"
+                  :y="comp.css.t"
                   :minw="20"
                   :minh="20"
                   :grid="grid"
@@ -35,7 +35,7 @@
                     @dblclick="handleDbClick"
                     :id="comp.id"
                     class="comp"
-                    :style="comp.css | formatStyle(['ft'])"
+                    :style="comp.css | formatStyle('ft')"
                     :type="comp.name"></comp-list>
                 </vue-drr>
               </template>
@@ -55,6 +55,7 @@ import { throttle } from '../../../assets/utils/util.js'
 import BaseComps from '../../../components/iTemplate/index.js'
 
 const BASE_COMP_NAME = 'Base'
+const BASE_COMP_CONFIG = 'Config'
 export default {
   components: {
     vueDrr,
@@ -96,14 +97,7 @@ export default {
   },
   data () {
     return {
-      grid: [1, 1], // 组件拖动的网格
-      curCompObj: {
-        rotate: 0,
-        x: 0,
-        y: 0,
-        w: 0,
-        h: 0
-      } // 当前正在编辑的组件对象
+      grid: [1, 1] // 组件拖动的网格
     }
   },
   created () {
@@ -124,13 +118,17 @@ export default {
     }
   },
   methods: {
-    // 当前组件是否可编辑
+    // 切换组件
     toggleComp (id) {
       this.$store.dispatch('toggleComp', id)
     },
     // 左击：点击组件
     handleClick (comp) {
-      console.log('单击666')
+      // 打开组件属性设置面板
+      this.$store.dispatch('openPropsPanel', {
+        id: comp.id,
+        name: comp.name + BASE_COMP_CONFIG
+      })
     },
     /**
      * 双击组件
@@ -141,15 +139,22 @@ export default {
     },
     // 组件拉伸时触发
     handleResizing (x, y, w, h) {
-      Object.assign(this.curCompObj, { x, y, w, h })
+      this.updateCompStyle({ l: x, t: y, w, h })
     },
     // 组件拖动时触发
     handleDragging (x, y) {
-      Object.assign(this.curCompObj, { x, y })
+      this.updateCompStyle({ l: x, t: y })
     },
     // 组件旋转时触发
     handleRotating (angle) {
-      Object.assign(this.curCompObj, { rotate: angle })
+      this.updateCompStyle({ rotate: angle })
+    },
+    // 同步用户修改
+    updateCompStyle (value) {
+      this.$store.dispatch('editComp', {
+        type: 'css',
+        value: value
+      })
     }
   }
 }

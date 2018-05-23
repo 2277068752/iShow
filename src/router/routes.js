@@ -12,10 +12,6 @@ export default [
     component: resolve => require(['../layout/Layout'], resolve),
     children: [
       {
-        path: '/404',
-        name: '404',
-        component: NotFind
-      }, {
         path: '/dashboard',
         name: '首页',
         component: _import('dashboard/Index')

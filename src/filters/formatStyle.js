@@ -31,8 +31,6 @@ const getCssObj = (key, value) => {
       }
     },
     ta: () => {
-      console.log(' key:', key)
-      console.log(' value:', value)
       return {
         'text-align': TEXT_ALIGN[value.t]
       }

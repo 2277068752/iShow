@@ -132,13 +132,6 @@ const actions = {
     commit(types.REMOVE_PAGE, pageId)
     return pageId
   },
-  // 打开编辑页面
-  openEditPage ({ commit }, pageId) {
-    commit(types.OPEN_PROPS_PANEL, {
-      name: 'PagePropConfig',
-      id: pageId
-    })
-  },
   /**
    * 初始化Editor 编辑器
    * 同时新建一个页面
