@@ -1,4 +1,4 @@
-import TextConfig from './text'
+import TextConfig from './text/Config.vue'
 
 export default {
   TextConfig

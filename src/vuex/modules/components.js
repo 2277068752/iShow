@@ -1,12 +1,14 @@
 import types from '../constTypes.js'
-import { getNewComp } from '../function.js'
+import {
+  getNewComp
+} from '../function.js'
 
 const BASE_COMP_SUFFIX = 'Data'
 const state = {
   list: [],
   curCompId: null,
   propsPanel: {
-    states: false,
+    show: false,
     name: '',
     id: ''
   } // 组件属性面板
@@ -34,7 +36,11 @@ const mutations = {
     state.curCompId = id
   },
   // 编辑当前组件
-  [types.EDIT_COMP] (state, { type, value, compId }) {
+  [types.EDIT_COMP] (state, {
+    type,
+    value,
+    compId
+  }) {
     // 先取当前组件
     let component = state.list.find((_x) => _x.id === compId || _x.id === state.curCompId)
     if (component) {
@@ -55,11 +61,21 @@ const mutations = {
   [types.ADD_COMPONENT] (state, val) {
     state.list.push(val)
   },
-  [types.OPEN_PROPS_PANEL] (state, { id, name }) {
+  [types.OPEN_PROPS_PANEL] (state, {
+    id,
+    name
+  }) {
     state.propsPanel = {
-      status: true,
+      show: true,
       name: name,
       id: id
+    }
+  },
+  [types.CLOSE_PROPS_PANEL] (state) {
+    state.propsPanel = {
+      show: false,
+      id: '',
+      name: ''
     }
   }
 }
@@ -68,7 +84,9 @@ const actions = {
   addNewComp ({ commit, getters }, name) {
     const compData = getNewComp(name + BASE_COMP_SUFFIX)
     if (compData) {
-      let newCompData = Object.assign(compData, { parentId: getters.curPageId })
+      let newCompData = Object.assign(compData, {
+        parentId: getters.curPageId
+      })
       commit(types.ADD_COMP_TO_PAGES, newCompData)
       commit(types.ADD_COMPONENT, newCompData)
     }
@@ -79,7 +97,9 @@ const actions = {
   },
   // 更新组件
   editComp ({ commit }, { type, value, compId }) {
-    commit(types.EDIT_COMP, { type, value, compId })
+    commit(types.EDIT_COMP, {
+      type, value, compId
+    })
   },
   // 打开组件属性设置面板
   openPropsPanel ({ commit }, { id, name }) {
@@ -87,6 +107,10 @@ const actions = {
       id: id,
       name: name
     })
+  },
+  // 关闭组件属性设置面板
+  closePropsPanel ({ commit }) {
+    commit(types.CLOSE_PROPS_PANEL)
   }
 }
 export default {

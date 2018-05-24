@@ -22,7 +22,7 @@
                   :x="comp.css.l"
                   :y="comp.css.t"
                   :minw="20"
-                  :minh="20"
+                  :minh="30"
                   :grid="grid"
                   :parent="true"
                   :angle="comp.css.rotate"
@@ -34,8 +34,8 @@
                     @click="handleClick(comp)"
                     @dblclick="handleDbClick"
                     :id="comp.id"
-                    class="comp"
-                    :style="comp.css | formatStyle('ft')"
+                     class="comp"
+                    :style="comp.css | formatStyle('ft', 'lh')"
                     :type="comp.name"></comp-list>
                 </vue-drr>
               </template>
@@ -72,8 +72,8 @@ export default {
       },
       render (h) {
         let _compFlagName = `${BASE_COMP_NAME}${this.type}`
-        let module = BaseComps[_compFlagName]
-        return h(module, {
+        let _module = BaseComps[_compFlagName]
+        return h(_module, {
           props: {
             id: this.id
           },

@@ -43,17 +43,16 @@ const BORDER_STYLES = {
 const TEXT_ALIGN = {
   1: 'left',
   2: 'right',
-  3: 'center',
-  4: 'justify'
+  3: 'center'
 } // 文本对齐方式
 // 模式匹配
 const PATTERN_MATCH = {
   w: {
-    value: 'width',
+    value: 'min-width',
     unit: 'px'
   },
   h: {
-    value: 'height',
+    value: 'min-height',
     unit: 'px'
   },
   t: {

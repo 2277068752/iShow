@@ -6420,6 +6420,12 @@ vue-count-to@^1.0.13:
   version "1.0.13"
   resolved "https://registry.npmjs.org/vue-count-to/-/vue-count-to-1.0.13.tgz#3e7573ea6e64c2b2972f64e0a2ab2e23c7590ff3"
 
+vue-drr@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.npmjs.org/vue-drr/-/vue-drr-1.0.9.tgz#9532b4f963ba57541a6b7748c3814528c95bc8ab"
+  dependencies:
+    vue "^2.5.2"
+
 vue-eslint-parser@^2.0.1:
   version "2.0.2"
   resolved "http://registry.npm.taobao.org/vue-eslint-parser/download/vue-eslint-parser-2.0.2.tgz#8d603545e9d7c134699075bd1772af1ffd86b744"

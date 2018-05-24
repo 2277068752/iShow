@@ -12,5 +12,6 @@ export default {
   TOGGLE_PAGE: 'toggle_page', // 切换页面
   ADD_COMP_TO_PAGES: 'add_component_to_page', // 往页面中添加组件
   // 属性编辑调整
-  OPEN_PROPS_PANEL: 'open_props_panel'
+  OPEN_PROPS_PANEL: 'open_props_panel', // 打开组件属性面板
+  CLOSE_PROPS_PANEL: 'close_props_panel' // 关闭组件属性面板
 }

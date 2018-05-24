@@ -10,7 +10,14 @@ const getters = {
   // 取页面列表
   pages: (state) => state.list,
   // 取当前页面ID
-  curPageId: (state) => state.curPageId || state.list[0]['id'],
+  curPageId: (state) => {
+    if (state.curPageId) {
+      return state.curPageId
+    }
+    if (state.list[0]) {
+      return state.list[0]['id']
+    }
+  },
   // 取当前页面
   curPage: (state) => {
     return state.list
