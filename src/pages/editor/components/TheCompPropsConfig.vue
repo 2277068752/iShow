@@ -131,6 +131,7 @@ export default {
   overflow: hidden;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.16);
   z-index: 1000;
+  height: 100%;
   user-select: none;
   .header {
     background-color: #fff;
@@ -155,6 +156,23 @@ export default {
         cursor: pointer;
         font-size: 14px;
         color: #a3afb7;
+      }
+    }
+  }
+  .props-panel-config{
+    height: calc(#{"100% - 54px"});
+    .text-comp-config-page {
+      height: 100%;
+      .el-tabs{
+        height: 100%;
+        overflow: hidden;
+        .el-tabs__content {
+          height: calc(#{"100% - 50px"});
+          overflow-y: auto;
+          .el-tab-pane {
+            height: 100%;
+          }
+        }
       }
     }
   }

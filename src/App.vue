@@ -1,7 +1,7 @@
 <template>
   <div id="app" style="height:100%;">
     <!--default slot-->
-    <router-view></router-view>
+    <router-view :key="$route.path"></router-view>
   </div>
 </template>
 

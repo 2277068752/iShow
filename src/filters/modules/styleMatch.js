@@ -40,11 +40,22 @@ const BORDER_STYLES = {
   4: 'dotted',
   5: 'double'
 }
+// 字体权重
+const FONT_WEIGHT = {
+  1: 300,
+  2: 400,
+  3: 500,
+  4: 600,
+  5: 700,
+  6: 800
+}
+// 文本对齐方式
 const TEXT_ALIGN = {
   1: 'left',
-  2: 'right',
-  3: 'center'
-} // 文本对齐方式
+  2: 'center',
+  3: 'right'
+}
+
 // 模式匹配
 const PATTERN_MATCH = {
   w: {
@@ -80,5 +91,6 @@ export {
   FONT_SIZES,
   BORDER_STYLES,
   PATTERN_MATCH,
-  TEXT_ALIGN
+  TEXT_ALIGN,
+  FONT_WEIGHT
 }

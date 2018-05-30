@@ -16,7 +16,7 @@
     <!--region 操作按钮-->
     <el-row class="action-group">
       <el-button size="small" type="primary">预览</el-button>
-      <el-button size="small" type="primary">保存</el-button>
+      <el-button size="small" type="primary" @click="savePage">保存</el-button>
       <el-button size="small" type="primary">发布</el-button>
       <el-button size="small" type="danger">退出</el-button>
     </el-row>
@@ -52,6 +52,11 @@ export default {
      */
     handleAddComponent (name) {
       this.$store.dispatch('addNewComp', name)
+    },
+    // 保存
+    savePage () {
+      let _curInfo = this.$store.getters.curComp
+      console.log(' _curInfo:', _curInfo)
     }
   }
 }

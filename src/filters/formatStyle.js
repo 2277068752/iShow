@@ -4,11 +4,13 @@ import {
   FONT_SIZES,
   BORDER_STYLES,
   PATTERN_MATCH,
-  TEXT_ALIGN
+  TEXT_ALIGN,
+  FONT_WEIGHT
 } from './modules/styleMatch.js'
 
 const getCssObj = (key, value) => {
   const handler = {
+    // 背景
     bg: () => {
       return {
         'background-color': value.c,
@@ -16,6 +18,7 @@ const getCssObj = (key, value) => {
         'background-repeat': BG_REPECT[value.t]
       }
     },
+    // 边框类型
     bd: () => {
       return {
         'border-width': value.w + 'px',
@@ -23,16 +26,29 @@ const getCssObj = (key, value) => {
         'border-color': value.c
       }
     },
+    // 阴影
+    bs: () => {
+      return {
+        'box-shadow': `${value.h}px ${value.v}px ${value.b}px ${value.s}px ${value.c}`
+      }
+    },
+    // 字体
     ft: () => {
       return {
         'font-size': FONT_SIZES[value.s],
         'font-family': FONT_FAMILYS[value.t],
+        'font-weight': FONT_WEIGHT[value.fw],
+        'font-style': value.fs ? 'italic' : 'normal',
+        'text-decoration': value.td ? 'underline' : 'none',
+        'line-height': value.lh,
+        'letter-spacing': value.ls + 'px',
         'color': value.c
       }
     },
+    // 对齐方式
     ta: () => {
       return {
-        'text-align': TEXT_ALIGN[value.t]
+        'text-align': TEXT_ALIGN[value] || 'left'
       }
     }
   }

@@ -24,8 +24,7 @@ export default {
       let css = this.compObj.css
       // 内联标签仅仅需要对字体设置css样式
       return {
-        ft: css.ft,
-        lh: css.lh
+        ft: css.ft
       }
     }
   }

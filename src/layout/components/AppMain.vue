@@ -3,7 +3,7 @@
     <transition name="fade" mode="out-in">
       <!-- <router-view :key="key"></router-view> -->
       <keep-alive :include="cachedViews">
-        <router-view></router-view>
+        <router-view :key="$route.path"></router-view>
       </keep-alive>
     </transition>
   </section>

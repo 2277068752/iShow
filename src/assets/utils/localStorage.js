@@ -57,7 +57,7 @@ export default {
         }
       }
       this.clear()
-      
+
       for (let i = 0; i < temp.length; i++) {
         this.set(temp[i].name, temp[i].val)
       }

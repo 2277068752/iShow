@@ -65,8 +65,8 @@ export default {
     display: flex;
     flex-direction: row;
     position: relative;
+    @include scrollBar;
     .editor-box {
-      @include scrollBar;
       box-sizing: border-box;
       width: 100%;
       overflow-y: auto;

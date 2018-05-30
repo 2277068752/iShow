@@ -71,7 +71,7 @@ const mutations = {
     }
   },
   // 编辑当前页面
-  [types.EDIT_COMP] (state, { type, value, pageId }) {
+  [types.EDIT_PAGE] (state, { type, value, pageId }) {
     let page = state.list
       .find(
         (_x) => _x.id === pageId || _x.id === state.curPageId
@@ -148,6 +148,29 @@ const actions = {
       .then((id) => {
         commit(types.TOGGLE_PAGE, id)
       })
+  },
+  // 修改当前页面
+  editCurPage ({ commit }, { type, value, pageId }) {
+    commit([types.EDIT_PAGE], { type, value, pageId })
+  },
+  // 更新页面中的某个组件中的css属性
+  editCompOfCurPage ({ commit, getters, state }, { type, key }) {
+    // 首先找到当前页面
+    let _page = state.list.find(_x => _x.id === state.curPageId)
+    if (_page) {
+      // 找当前页面中的组件
+      let _comp = _page.comps.find(_x => _x.id === window.$globalHub.$store.state.components.curCompId)
+      let _obj = _comp[type]
+      if (typeof _obj === 'object') {
+        if (typeof _obj[key] === 'object') {
+          Object.assign(_obj[key], window.$globalHub.$store.getters.curComp[type][key])
+          console.log(' state.list:', state.list)
+        } else {
+          _obj[key] = window.$globalHub.$store.getters.curComp[type][key]
+          console.log(' state.list:', state.list)
+        }
+      }
+    }
   }
 }
 export default {

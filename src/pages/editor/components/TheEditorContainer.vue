@@ -14,13 +14,15 @@
             <!--endregion-->
             <!--region 组件-->
             <div class="component-wrapper">
-              <template v-for="(comp, compKey) in page.comps">
+              <template v-for="comp in page.comps">
                 <vue-drr
-                  :key="compKey"
-                  :w="comp.css.w"
-                  :h="comp.css.h"
-                  :x="comp.css.l"
-                  :y="comp.css.t"
+                  ref="compDrr"
+                  :id="'comp_' + comp.id"
+                  :key="comp.id"
+                  :w="parseInt(comp.css.w)"
+                  :h="parseInt(comp.css.h)"
+                  :x="parseInt(comp.css.l)"
+                  :y="parseInt(comp.css.t)"
                   :minw="20"
                   :minh="30"
                   :grid="grid"
@@ -33,8 +35,9 @@
                   <comp-list
                     @click="handleClick(comp)"
                     @dblclick="handleDbClick"
+                    ref="comp"
                     :id="comp.id"
-                     class="comp"
+                    class="comp"
                     :style="comp.css | formatStyle('ft', 'lh')"
                     :type="comp.name"></comp-list>
                 </vue-drr>
@@ -115,6 +118,17 @@ export default {
           message: '初始化页面失败,请刷新后重试！'
         })
       }
+    },
+    curCompId () {
+      return this.$store.state.components.curCompId
+    },
+    curComp () {
+      return this.$store.getters.currComp
+    }
+  },
+  watch: {
+    curCompId () {
+      console.log(' this.$store.getters.curComp:', this.$store.getters.curComp)
     }
   },
   methods: {
