@@ -2,11 +2,10 @@
 <template>
   <div ref="propsPanelConfig" class="the-comp-props-config-page" v-if="propsPanel && propsPanel.show"
        :style="{ height: panelHeight }">
-    <div ref="header" :class="isMouseDown ? 'header pointer-events': 'header'"
-         @mousedown="handleDragMouseDown">
-      <div class="title">组件设置</div>
+    <div :class="isMouseDown ? 'header pointer-events': 'header'">
+      <div class="title" ref="header" @mousedown="handleDragMouseDown">组件设置</div>
       <div class="close">
-        <span class="axon-icon" v-html="'&#xe635;'" @click="closePropsPanel"></span>
+        <span class="axon-icon" v-html="'&#xe635;'" @click="closePropsPanel()"></span>
       </div>
     </div>
     <div class="props-panel-config">
@@ -74,9 +73,11 @@ export default {
       return this.$store.getters.propPanel
     }
   },
+  watch: {},
   methods: {
     // 关闭属性面板
     closePropsPanel () {
+      console.log(' close:')
       this.$store.dispatch('closePropsPanel')
     },
     // 拖动：当鼠标点下的时候，给要拖动的元素附上初始值
@@ -141,17 +142,18 @@ export default {
     padding: 0 16px;
     user-select: none;
     display: flex;
-    cursor: move;
     &.pointer-events {
       pointer-events: none;
     }
     .title {
       flex: 0 0 50%;
       font-size: 13px;
+      cursor: move;
     }
     .close {
       flex: 0 0 50%;
       text-align: right;
+      z-index: 9999;
       span {
         cursor: pointer;
         font-size: 14px;
@@ -159,11 +161,11 @@ export default {
       }
     }
   }
-  .props-panel-config{
+  .props-panel-config {
     height: calc(#{"100% - 54px"});
     .text-comp-config-page {
       height: 100%;
-      .el-tabs{
+      .el-tabs {
         height: 100%;
         overflow: hidden;
         .el-tabs__content {

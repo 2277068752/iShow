@@ -6,7 +6,7 @@ import routes from './routes'
 
 Vue.use(Router)
 export default new Router({
-  mode: 'history', // 后端支持可开
+  // mode: 'history', // 后端支持可开
   base: config.build.assetsPublicPath,
   routes
 })

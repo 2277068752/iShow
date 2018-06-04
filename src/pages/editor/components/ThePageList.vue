@@ -4,11 +4,14 @@
     <div class="title">页面管理</div>
     <div class="action-group">
       <div class="item">
-        <span class="axon-icon" v-html="'&#xe646;'"></span>添加</div>
+        <span class="axon-icon" v-html="'&#xe646;'"></span>添加
+      </div>
       <div class="item">
-        <span class="axon-icon" v-html="'&#xe668;'"></span>复制</div>
+        <span class="axon-icon" v-html="'&#xe668;'"></span>复制
+      </div>
       <div class="item">
-        <span class="axon-icon" v-html="'&#xe61d;'"></span>删除</div>
+        <span class="axon-icon" v-html="'&#xe61d;'"></span>删除
+      </div>
     </div>
     <ul class="list">
       <template v-for="(page, key) in pages">
@@ -23,6 +26,9 @@
           </span>
         </li>
       </template>
+      <li class="page add-new-page">
+        <el-button type="primary" size="medium " icon="el-icon-plus">添加新页面</el-button>
+      </li>
     </ul>
   </div>
   <!--endregion-->
@@ -128,6 +134,13 @@ export default {
         .name {
           color: #000;
         }
+      }
+    }
+    .add-new-page {
+      display: block;
+      text-align: center;
+      .axon-icon {
+        font-size: 30px;
       }
     }
   }

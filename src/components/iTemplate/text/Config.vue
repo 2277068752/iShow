@@ -27,7 +27,7 @@
                 <li class="props-item in-line">
                   <label>颜色</label>
                   <el-color-picker v-model="currComp.css.ft.c" show-alpha color-format="rgb"
-                                   size="small"></el-color-picker>
+                                   size="small" @change="updateFont"></el-color-picker>
                   <ul class="color-panel">
                     <template v-for="(color, key) in colorArr">
                       <li :key="key" :style="{backgroundColor: color}"
@@ -64,11 +64,12 @@
                              :min="0"
                              :max="20"
                              :show-input-controls="false"
-                             show-input></el-slider>
+                             show-input
+                             @change="updateFont"></el-slider>
                 </li>
                 <li class="props-item in-line">
                   <label>字号</label>
-                  <el-select v-model="currComp.css.ft.s" size="small">
+                  <el-select v-model="currComp.css.ft.s" size="small" @change="updateFont">
                     <el-option v-for="size in fontSizeArr"
                                :key="size.id"
                                :label="size.value"
@@ -77,7 +78,7 @@
                 </li>
                 <li class="props-item in-line">
                   <label>对齐方式</label>
-                  <el-select class="text-align-select" v-model="currComp.css.ta" size="small">
+                  <el-select class="text-align-select" v-model="currComp.css.ta" size="small" @change="updateFont">
                     <el-option v-for="align in textAlignArr"
                                :key="align.id"
                                :label="align.desc"
@@ -94,13 +95,14 @@
                              :step="1"
                              :min="1"
                              :max="6"
-                             show-stops></el-slider>
+                             show-stops @change="updateFont"></el-slider>
                 </li>
                 <li class="props-item font-icon-props">
                   <span :class="currComp.css.ft.fs ? 'axon-icon is-active' : 'axon-icon'"
-                        v-html="'&#xe659;'" @click="currComp.css.ft.fs = !currComp.css.ft.fs"></span>
+                        v-html="'&#xe659;'" @click="clickUpdateFont('fs')"
+                  ></span>
                   <span :class="currComp.css.ft.td ? 'axon-icon is-active' : 'axon-icon'"
-                        v-html="'&#xe65c;'" @click="currComp.css.ft.td = !currComp.css.ft.td"></span>
+                        v-html="'&#xe65c;'" @click="clickUpdateFont('td')"></span>
                 </li>
               </ul>
               <!--endregion-->
@@ -108,7 +110,7 @@
               <ul v-if="coll.key === '2'" class="coll-item">
                 <li class="props-item in-line">
                   <label>边框样式</label>
-                  <el-select v-model="currComp.css.bd.t" size="small">
+                  <el-select v-model="currComp.css.bd.t" size="small" @change="updateBd">
                     <el-option v-for="size in borderTypeArr"
                                :key="size.id"
                                :label="size.desc"
@@ -118,7 +120,7 @@
                 <li class="props-item in-line">
                   <label>边框颜色</label>
                   <el-color-picker v-model="currComp.css.bd.c" show-alpha color-format="rgb"
-                                   size="small"></el-color-picker>
+                                   size="small" @change="updateBd"></el-color-picker>
                   <ul class="color-panel">
                     <template v-for="(color, key) in colorArr">
                       <li :key="key" :style="{backgroundColor: color}"
@@ -134,7 +136,8 @@
                              :min="0"
                              :max="20"
                              :show-input-controls="false"
-                             show-input></el-slider>
+                             show-input
+                             @change="updateBd"></el-slider>
                 </li>
                 <li class="props-item in-line">
                   <label>边框弧度</label>
@@ -144,7 +147,7 @@
                              :min="0"
                              :max="100"
                              :show-input-controls="false"
-                             show-input></el-slider>
+                             show-input @change="updateBd"></el-slider>
                 </li>
               </ul>
               <!--endregion-->
@@ -153,7 +156,7 @@
                 <li class="props-item in-line">
                   <label>阴影颜色</label>
                   <el-color-picker v-model="currComp.css.bs.c" show-alpha color-format="rgb"
-                                   size="small"></el-color-picker>
+                                   size="small" @change="updateBs"></el-color-picker>
                   <ul class="color-panel">
                     <template v-for="(color, key) in colorArr">
                       <li :key="key" :style="{backgroundColor: color}"
@@ -169,7 +172,8 @@
                              :min="0"
                              :max="20"
                              :show-input-controls="false"
-                             show-input></el-slider>
+                             show-input
+                             @change="updateBs"></el-slider>
                 </li>
                 <li class="props-item in-line">
                   <label>水平偏移</label>
@@ -179,7 +183,8 @@
                              :min="-10"
                              :max="10"
                              :show-input-controls="false"
-                             show-input></el-slider>
+                             show-input
+                             @change="updateBs"></el-slider>
                 </li>
                 <li class="props-item in-line">
                   <label>垂直偏移</label>
@@ -189,7 +194,8 @@
                              :min="-10"
                              :max="10"
                              :show-input-controls="false"
-                             show-input></el-slider>
+                             show-input
+                             @change="updateBs"></el-slider>
                 </li>
                 <li class="props-item in-line">
                   <label>阴影模糊</label>
@@ -199,7 +205,8 @@
                              :min="-0"
                              :max="20"
                              :show-input-controls="false"
-                             show-input></el-slider>
+                             show-input
+                             @change="updateBs"></el-slider>
                 </li>
               </ul>
               <!--endregion-->
@@ -209,11 +216,13 @@
                   <label>尺寸(px)</label>
                   <div class="size-group">
                     <div class="width item">
-                      <el-input size="medium" type="number" v-model="currComp.css.h" @change="updateSizeAndLocation('h')"></el-input>
+                      <el-input size="medium" type="number" v-model="currComp.css.h"
+                                @change="updateSizeAndLocation('h')"></el-input>
                       <p>高度</p>
                     </div>
                     <div class="height item">
-                      <el-input size="medium" type="number" v-model="currComp.css.w" @change="updateSizeAndLocation('w')"></el-input>
+                      <el-input size="medium" type="number" v-model="currComp.css.w"
+                                @change="updateSizeAndLocation('w')"></el-input>
                       <p>宽度</p>
                     </div>
                   </div>
@@ -222,11 +231,13 @@
                   <label>位置(px)</label>
                   <div class="size-group">
                     <div class="width item">
-                      <el-input size="medium" type="number" v-model="currComp.css.l" @change="updateSizeAndLocation('l')"></el-input>
+                      <el-input size="medium" type="number" v-model="currComp.css.l"
+                                @change="updateSizeAndLocation('l')"></el-input>
                       <p>X</p>
                     </div>
                     <div class="height item">
-                      <el-input size="medium" type="number" v-model="currComp.css.t" @change="updateSizeAndLocation('t')"></el-input>
+                      <el-input size="medium" type="number" v-model="currComp.css.t"
+                                @change="updateSizeAndLocation('t')"></el-input>
                       <p>Y</p>
                     </div>
                   </div>
@@ -236,10 +247,11 @@
                   <el-slider class="line-height-slider"
                              v-model="currComp.css.rotate"
                              :step="1"
-                             :min="0"
+                             :min="-360"
                              :max="360"
                              :show-input-controls="false"
-                             show-input></el-slider>
+                             show-input
+                             @change="updateSizeAndLocation('rotate')"></el-slider>
                 </li>
               </ul>
               <!--endregion-->
@@ -357,36 +369,65 @@ export default {
   },
   methods: {
     handleColl (item) {},
-    // 通过快捷面板 === 选择字体颜色
+    // 通过快捷面板 === 选择颜色
     chooseColorByPanel (val) {
-      this.syncCss(val)
+      this.syncCss('css', val)
     },
     // 文本框内容更新
     updateProps () {
-      this.syncPage('props', 'text')
+      this.syncCss('props', { 'text': this.currComp.props['text'] })
+    },
+    // 倾斜、下划线点击样式更新
+    clickUpdateFont (key) {
+      this.currComp.css.ft[key] = !this.currComp.css.ft[key]
+      this.updateFont()
     },
     // 样式更新 === 字体
     updateFont () {
-      this.syncPage('css', 'ft')
+      this.syncCss('css', { 'ft': this.currComp.css['ft'] })
     },
     // 样式更新 === 背景
     updateBg () {
-      this.syncPage('css', 'bgc')
+      this.syncCss('css', { 'bgc': this.currComp.css['bgc'] })
+    },
+    // 边框
+    updateBd () {
+      this.syncCss('css', { 'bd': this.currComp.css['bd'] })
+    },
+    // 阴影
+    updateBs () {
+      this.syncCss('css', { 'bs': this.currComp.css['bs'] })
     },
     // 更新尺寸和位置
     updateSizeAndLocation (key) {
-      this.syncPage('css', key)
-    },
-    syncPage (type, key) {
-      this.$store.dispatch('editCompOfCurPage', {
-        type: type,
-        key: key
-      })
+      let _flag = ''
+      switch (key) {
+        case 'h':
+          _flag = 'height'
+          break
+        case 'w':
+          _flag = 'width'
+          break
+        case 'l':
+          _flag = 'left'
+          break
+        case 't':
+          _flag = 'top'
+          break
+        case 'rotate':
+          _flag = 'transform'
+          break
+      }
+      let _obj = {}
+      _obj[key] = this.currComp.css[key]
+      this.syncCss('css', _obj)
+      // this.$parent.$parent.$parent.$refs['editorContainer'].$refs[`comp_${this.currComp.id}`][0].style[_flag] = key !== 'rotate' ? this.currComp.css[key] + 'px' : `rotate(${this.currComp.css[key]}deg)`
+      document.getElementById(`comp_${this.currComp.id}`).style[_flag] = key !== 'rotate' ? this.currComp.css[key] + 'px' : `rotate(${this.currComp.css[key]}deg)`
     },
     // 同步到持久化
-    syncCss (val) {
+    syncCss (type, val) {
       this.$store.dispatch('editComp', {
-        type: 'css',
+        type: type,
         value: val
       })
     }

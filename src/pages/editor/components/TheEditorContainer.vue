@@ -16,7 +16,7 @@
             <div class="component-wrapper">
               <template v-for="comp in page.comps">
                 <vue-drr
-                  ref="compDrr"
+                  :ref="'comp_' + comp.id"
                   :id="'comp_' + comp.id"
                   :key="comp.id"
                   :w="parseInt(comp.css.w)"
@@ -27,15 +27,14 @@
                   :minh="30"
                   :grid="grid"
                   :parent="true"
-                  :angle="comp.css.rotate"
+                  :angle="parseInt(comp.css.rotate)"
                   @activated="toggleComp(comp.id)"
-                  @resizing="handleResizing"
-                  @dragging="handleDragging"
-                  @rotating="handleRotating">
+                  @resizestop="handleResizing"
+                  @dragstop="handleDragging"
+                  @rotatestop="handleRotating">
                   <comp-list
                     @click="handleClick(comp)"
                     @dblclick="handleDbClick"
-                    ref="comp"
                     :id="comp.id"
                     class="comp"
                     :style="comp.css | formatStyle('ft', 'lh')"
@@ -119,16 +118,13 @@ export default {
         })
       }
     },
+    // 取当前正在编辑的组件
     curCompId () {
       return this.$store.state.components.curCompId
     },
+    // 取当前组件
     curComp () {
       return this.$store.getters.currComp
-    }
-  },
-  watch: {
-    curCompId () {
-      console.log(' this.$store.getters.curComp:', this.$store.getters.curComp)
     }
   },
   methods: {
@@ -177,10 +173,11 @@ export default {
 <style lang="scss">
 .the-editor-container {
   margin: 0 auto;
-  border: 2px solid #ddd;
+  border: 1px solid #ddd;
   border-radius: 2px;
-  width: 52.7rem;
-  min-height: 82.6rem;
+  box-sizing: border-box;
+  width: 375px;
+  min-height: 667px;
   flex: 0 0 1;
   height: 100%;
   background-color: #fff;

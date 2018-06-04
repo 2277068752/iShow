@@ -5,7 +5,7 @@
     <div class="index-center" ref="centerBox">
       <the-template-list></the-template-list>
       <div class="editor-box">
-        <the-editor-container></the-editor-container>
+        <the-editor-container ref="editorContainer"></the-editor-container>
       </div>
       <the-page-list></the-page-list>
       <the-comp-props-config></the-comp-props-config>

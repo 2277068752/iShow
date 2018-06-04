@@ -42,8 +42,8 @@ export default () => {
       bs: {
         h: 0,
         v: 0,
-        b: 5,
-        s: 5,
+        b: 0,
+        s: 0,
         c: '#ccc'
       }
     } // css样式

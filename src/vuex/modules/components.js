@@ -46,7 +46,7 @@ const mutations = {
     if (component) {
       let compProp = component[type]
       for (let key in value) {
-        if (!compProp[key]) {
+        if (!compProp[key].toString()) {
           continue
         }
         if (typeof value[key] === 'object') {
@@ -81,7 +81,10 @@ const mutations = {
 }
 const actions = {
   // 添加一个新组件
-  addNewComp ({ commit, getters }, name) {
+  addNewComp ({
+    commit,
+    getters
+  }, name) {
     const compData = getNewComp(name + BASE_COMP_SUFFIX)
     if (compData) {
       let newCompData = Object.assign(compData, {
@@ -92,24 +95,41 @@ const actions = {
     }
   },
   // 激活当前组件
-  toggleComp ({ commit }, val) {
+  toggleComp ({
+    commit
+  }, val) {
     commit(types.TOGGLE_COMP, val)
   },
   // 更新组件
-  editComp ({ commit }, { type, value, compId }) {
+  editComp ({
+    commit
+  }, {
+    type,
+    value,
+    compId
+  }) {
     commit(types.EDIT_COMP, {
-      type, value, compId
+      type,
+      value,
+      compId
     })
   },
   // 打开组件属性设置面板
-  openPropsPanel ({ commit }, { id, name }) {
+  openPropsPanel ({
+    commit
+  }, {
+    id,
+    name
+  }) {
     commit(types.OPEN_PROPS_PANEL, {
       id: id,
       name: name
     })
   },
   // 关闭组件属性设置面板
-  closePropsPanel ({ commit }) {
+  closePropsPanel ({
+    commit
+  }) {
     commit(types.CLOSE_PROPS_PANEL)
   }
 }
